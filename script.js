@@ -69,24 +69,3 @@ function carregarPosts() {
 }
 
 carregarPosts();
-
-// ==========================================
-// 3. LÓGICA DO FORMULÁRIO (GERAR JSON)
-// ==========================================
-document.getElementById('form-feedback').addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const novo = {
-        nome: document.getElementById('nome-jogador').value,
-        tipo: document.getElementById('tipo-feedback').value,
-        data: new Date().toLocaleDateString('pt-BR'),
-        mensagem: document.getElementById('mensagem-jogador').value
-    };
-
-    console.log("--- NOVO REGISTRO PARA COPIAR ---");
-    console.log(JSON.stringify(novo, null, 2) + ",");
-    console.log("---------------------------------");
-
-    alert("Mensagem enviada! Mestre, o código JSON está no Console (F12).");
-    this.reset();
-});
