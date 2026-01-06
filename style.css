@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=MedievalSharp&family=Spectral:ital,wght@0,400;0,700;1,400&display=swap');
+
+:root {
+    --preto-profundo: #0a0a0a;
+    --marrom-couro: #2b1d12;
+    --marrom-claro: #4e342e;
+    --dourado: #d4af37;
+    --dourado-brilho: #f9e4a8;
+    --pergaminho: #f5e6be;
+    --texto-claro: #e0d8c0;
+}
+
+body {
+    background-color: var(--preto-profundo);
+    background-image: radial-gradient(circle, #1a1a1a 0%, #0a0a0a 100%);
+    color: var(--texto-claro);
+    font-family: 'Spectral', serif;
+    margin: 0;
+    line-height: 1.6;
+}
+
+header {
+    background: linear-gradient(to bottom, #1a0f08, var(--preto-profundo));
+    padding: 30px 20px;
+    border-bottom: 3px solid var(--dourado);
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    color: var(--dourado);
+    letter-spacing: 5px;
+    margin: 0;
+}
+
+nav { margin-top: 20px; }
+
+nav a {
+    text-decoration: none;
+    color: var(--dourado);
+    font-family: 'Cinzel', serif;
+    margin: 0 15px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-nav {
+    background: var(--marrom-couro);
+    color: var(--dourado);
+    border: 1px solid var(--dourado);
+    padding: 8px 15px;
+    font-family: 'Cinzel', serif;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+nav a:hover, .btn-nav:hover {
+    color: var(--dourado-brilho);
+    text-shadow: 0 0 10px var(--dourado);
+}
+
+.countdown-container {
+    background: rgba(43, 29, 18, 0.8);
+    border: 2px solid var(--dourado);
+    max-width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+#timer {
+    font-size: 2rem;
+    font-family: 'Cinzel', serif;
+    color: #fff;
+}
+
+#timer span { color: var(--dourado); }
+
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--marrom-claro);
+    margin: 30px auto;
+    padding: 25px;
+    max-width: 850px;
+    border-radius: 10px;
+}
+
+.card h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--dourado);
+    border-bottom: 1px solid var(--marrom-claro);
+}
+
+.mapa-img {
+    max-width: 100%;
+    border: 5px solid var(--marrom-couro);
+    filter: sepia(30%);
+    transition: 0.5s;
+}
+
+.map-wrapper:hover .mapa-img { filter: none; transform: scale(1.01); }
+
+/* Estilo Pergaminho para Registros */
+.post {
+    background: var(--pergaminho);
+    color: #2b1d12;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-left: 8px solid var(--marrom-couro);
+    text-align: left;
+    border-radius: 4px;
+    box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+}
+
+.post h3 { font-family: 'MedievalSharp', cursive; margin-top: 0; }
+
+/* Form Estilo */
+#form-feedback { display: flex; flex-direction: column; gap: 10px; }
+input, select, textarea {
+    background: #1a1a1a;
+    border: 1px solid var(--marrom-claro);
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.btn-enviar {
+    background: var(--marrom-couro);
+    color: var(--dourado);
+    border: 1px solid var(--dourado);
+    padding: 12px;
+    font-family: 'Cinzel', serif;
+    cursor: pointer;
+}
+
+.btn-enviar:hover { background: var(--dourado); color: black; }
+
+footer { padding: 40px; text-align: center; opacity: 0.5; }
+#admin-login { background: none; border: none; color: gray; cursor: pointer; }
