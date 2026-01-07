@@ -16,7 +16,7 @@ if (sessionStorage.getItem("acessoPermitido") !== "true") {
 // ==========================================
 // 1. CONFIGURAÇÃO DO CONTADOR
 // ==========================================
-const dataProximaSessao = new Date("Jan 7, 2026 15:30:00").getTime();
+const dataProximaSessao = new Date("Jan 7, 2026 16:00:00").getTime();
 
 const contador = setInterval(function() {
     const agora = new Date().getTime();
