@@ -1,7 +1,7 @@
 // 1. SISTEMA DE SENHA
 (function() {
     const hashCorreto = "c2l0ZWNhdmVybmFycGcxMjM="; 
-    let senhaUser = prompt("Digite a senha da Caverna:");
+    let senhaUser = prompt("Digite a senha da Caverna RPG:");
     if (btoa(senhaUser) !== hashCorreto) {
         alert("Senha incorreta!");
         document.body.innerHTML = "<h1 style='color:white; text-align:center; margin-top:100px;'>Acesso Negado</h1>";
