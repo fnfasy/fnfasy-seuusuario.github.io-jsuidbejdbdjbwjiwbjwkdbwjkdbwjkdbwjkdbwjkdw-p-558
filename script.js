@@ -1,71 +1,63 @@
-// A senha real é 'caverna123', mas no código aparece codificada
-const hashSenha = "c2l0ZWNhdmVybmFycGcxMjM="; 
-
-if (sessionStorage.getItem("acessoPermitido") !== "true") {
-    let tentativa = prompt("Digite a palavra-passe da Caverna:");
-    
-    // btoa converte texto para base64 para comparar
-    if (btoa(tentativa) === hashSenha) {
-        sessionStorage.setItem("acessoPermitido", "true");
-    } else {
-        document.body.innerHTML = "Acesso Negado.";
-        window.location.reload(); // Recarrega para pedir de novo
+// 1. SISTEMA DE SENHA (Apenas um exemplo, mantenha o seu se preferir)
+(function() {
+    const hashCorreto = "Y2F2ZXJuYTEyMw=="; // senha: caverna123
+    let senhaUser = prompt("Digite a senha da Caverna:");
+    if (btoa(senhaUser) !== hashCorreto) {
+        alert("Senha incorreta!");
+        document.body.innerHTML = "<h1>Acesso Negado</h1>";
     }
-}
+})();
 
-// ==========================================
-// 1. CONFIGURAÇÃO DO CONTADOR
-// ==========================================
-const dataProximaSessao = new Date("Jan 7, 2026 16:00:00").getTime();
+// 2. CRONÔMETRO (AJUSTADO PARA BRASÍLIA -03:00)
+const dataProximaSessao = new Date("2026-01-07T16:00:00-03:00").getTime();
 
-const contador = setInterval(function() {
+const x = setInterval(function() {
     const agora = new Date().getTime();
     const distancia = dataProximaSessao - agora;
 
-    const d = Math.floor(distancia / (1000 * 60 * 60 * 24));
-    const h = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const m = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
-    const s = Math.floor((distancia % (1000 * 60)) / 1000);
+    const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+    const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
 
-    document.getElementById("days").innerHTML = d;
-    document.getElementById("hours").innerHTML = h;
-    document.getElementById("minutes").innerHTML = m;
-    document.getElementById("seconds").innerHTML = s;
+    document.getElementById("days").innerHTML = dias;
+    document.getElementById("hours").innerHTML = horas;
+    document.getElementById("minutes").innerHTML = minutos;
+    document.getElementById("seconds").innerHTML = segundos;
 
     if (distancia < 0) {
-        clearInterval(contador);
-        document.getElementById("timer").innerHTML = "A SESSÃO ESTÁ ACONTECENDO!";
+        clearInterval(x);
+        document.getElementById("status-sessao").innerHTML = "A SESSÃO COMEÇOU!";
+        document.getElementById("timer").innerHTML = "⚔️ EM COMBATE ⚔️";
     }
 }, 1000);
 
-// ==========================================
-// 2. BANCO DE DADOS LOCAL (JSON)
-// ==========================================
-// MESTRE: Para adicionar novos registros, basta copiar o formato abaixo e colar aqui!
+// 3. REGISTROS (DIÁRIO)
 const registrosDados = [
     {
-        nome: "Mestre (José)",
-        tipo: "relato",
+        nome: "Mestre",
+        tipo: "Aviso",
         data: "06/01/2026",
-        mensagem: "A campanha começou! Bem vindos ao Caverna RPG"
-    },
+        mensagem: "Sejam bem-vindos à Caverna!"
+    }
 ];
 
-// Função para renderizar os registros na tela
 function carregarPosts() {
     const lista = document.getElementById('registros-lista');
-    lista.innerHTML = ""; // Limpa antes de carregar
-    
-    registrosDados.reverse().forEach(post => {
+    if (!lista) return;
+    lista.innerHTML = "";
+    registrosDados.slice().reverse().forEach(post => {
         const item = document.createElement('article');
-        item.className = 'post';
+        item.style.borderBottom = "1px solid #444";
+        item.style.marginBottom = "10px";
         item.innerHTML = `
-            <h3>${post.nome} - <small>${post.tipo}</small></h3>
-            <p><small>${post.data}</small></p>
+            <h3 style="color:#d4af37">${post.nome} <small style="color:#888">(${post.tipo})</small></h3>
+            <p style="font-size:0.8em; color:#aaa">${post.data}</p>
             <p>${post.mensagem}</p>
         `;
         lista.appendChild(item);
     });
 }
 
-carregarPosts();
+// Inicia tudo
+window.onload = carregarPosts;
