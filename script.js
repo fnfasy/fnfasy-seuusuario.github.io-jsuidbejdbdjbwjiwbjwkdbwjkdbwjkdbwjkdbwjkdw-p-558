@@ -1,6 +1,6 @@
 // 1. SISTEMA DE SENHA (Apenas um exemplo, mantenha o seu se preferir)
 (function() {
-    const hashCorreto = "Y2F2ZXJuYTEyMw=="; // senha: caverna123
+    const hashCorreto = "c2l0ZWNhdmVybmFycGcxMjM="; // senha: caverna123
     let senhaUser = prompt("Digite a senha da Caverna:");
     if (btoa(senhaUser) !== hashCorreto) {
         alert("Senha incorreta!");
