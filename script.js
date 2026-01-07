@@ -1,4 +1,4 @@
-// 1. SISTEMA DE SENHA (ATUALIZADO COM SEU NOVO HASH)
+// 1. SISTEMA DE SENHA
 (function() {
     const hashCorreto = "c2l0ZWNhdmVybmFycGcxMjM="; 
     let senhaUser = prompt("Digite a senha da Caverna:");
@@ -9,7 +9,7 @@
 })();
 
 // 2. CRONÔMETRO (HORÁRIO DE BRASÍLIA)
-const dataProximaSessao = new Date("2026-01-07T16:00:00-03:00").getTime();
+const dataProximaSessao = new Date("2026-01-08T16:00:00-03:00").getTime();
 
 const x = setInterval(function() {
     const agora = new Date().getTime();
@@ -20,7 +20,6 @@ const x = setInterval(function() {
     const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
     const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
 
-    // Garante que o elemento existe antes de tentar atualizar
     if(document.getElementById("days")) {
         document.getElementById("days").innerHTML = dias;
         document.getElementById("hours").innerHTML = horas;
@@ -33,17 +32,23 @@ const x = setInterval(function() {
         const statusH2 = document.getElementById("status-sessao");
         if(statusH2) statusH2.innerHTML = "A SESSÃO COMEÇOU!";
         const timerDiv = document.getElementById("timer");
-        if(timerDiv) timerDiv.innerHTML = "⚔️ EM COMBATE ⚔️";
+        if(timerDiv) timerDiv.innerHTML = "PEGUEM SEUS DADOS! POIS O RPG COMEÇOU:)";
     }
 }, 1000);
 
-// 3. REGISTROS (DIÁRIO)
+// 3. REGISTROS (DIÁRIO) - VÍRGULA CORRIGIDA AQUI
 const registrosDados = [
     {
         nome: "Mestre",
         tipo: "Aviso",
-        data: "07/01/2026",
+        data: "06/01/2026",
         mensagem: "Sejam bem-vindos à Caverna! Usem o formulário abaixo para enviar seus relatos."
+    }, // <-- ESSA VÍRGULA ESTAVA FALTANDO E TRAVOU TUDO
+    {
+        nome: "Helena",
+        tipo: "Resumo",
+        data: "07/01/2026",
+        mensagem: "Resumo da seção: Hoje nossos guerreiros receberam uma nova missão: investigar um possível assassinato do rei. Com o primeiro ponto sendo a biblioteca, eles leram uma carta do Conselho de Segurança, onde continham informações importantes sobre o rei. Logo após a visita à biblioteca, passaram na casa de Nina, uma bruxa local, que deu informações sobre os possíveis suspeitos. Com essas informações, dividiram o grupo em dois, metade foi para um pequeno interrogatório com um Nobre do Leste e outra metade vai se infiltrar em uma base dos nobres, onde tem uma possível máquina de alta destruição. O que é a máquina? Será que a máquina vai ser usada contra o rei? A infiltração será bem sucedida? Descubra na próxima seção ⚔️"
     }
 ];
 
@@ -64,5 +69,4 @@ function carregarPosts() {
     });
 }
 
-// Inicia os posts assim que a página carrega
 window.onload = carregarPosts;
