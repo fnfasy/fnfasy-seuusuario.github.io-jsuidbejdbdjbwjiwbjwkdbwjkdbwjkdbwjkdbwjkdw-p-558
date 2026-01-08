@@ -8,42 +8,52 @@
     }
 })();
 
-// 2. CRONÔMETRO (HORÁRIO DE BRASÍLIA)
+// 2. CRONÔMETRO
 const dataProximaSessao = new Date("2026-01-08T16:00:00-03:00").getTime();
-
 const x = setInterval(function() {
     const agora = new Date().getTime();
     const distancia = dataProximaSessao - agora;
 
-    const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
-    const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
-
-    if(document.getElementById("days")) {
-        document.getElementById("days").innerHTML = dias;
-        document.getElementById("hours").innerHTML = horas;
-        document.getElementById("minutes").innerHTML = minutos;
-        document.getElementById("seconds").innerHTML = segundos;
-    }
+    document.getElementById("days").innerHTML = Math.floor(distancia / (1000 * 60 * 60 * 24));
+    document.getElementById("hours").innerHTML = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    document.getElementById("minutes").innerHTML = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+    document.getElementById("seconds").innerHTML = Math.floor((distancia % (1000 * 60)) / 1000);
 
     if (distancia < 0) {
         clearInterval(x);
-        const statusH2 = document.getElementById("status-sessao");
-        if(statusH2) statusH2.innerHTML = "A SESSÃO COMEÇOU!";
-        const timerDiv = document.getElementById("timer");
-        if(timerDiv) timerDiv.innerHTML = "PEGUEM SEUS DADOS! POIS O RPG COMEÇOU:)";
+        document.getElementById("status-sessao").innerHTML = "A SESSÃO COMEÇOU!";
+        document.getElementById("timer").innerHTML = "PEGUEM SEUS DADOS! POIS O RPG COMEÇOU:)";
     }
 }, 1000);
 
-// 3. REGISTROS (DIÁRIO) - VÍRGULA CORRIGIDA AQUI
+// 3. NOVO: ATUALIZAÇÕES DOS PERSONAGENS
+const personagensDados = [
+    { nome: "Ariah", status: "Desenvolveu medo da Nina", nota: "O motivo é que ela é muito grossa" },
+    { nome: "Homura", status: "Desenvolveu curiosidade em cachaça.", nota: "O Motivo: falaram muito perto dela (quando ela era pequena não deixavam ela nem chegar perto)" },
+    { nome: "Lucca", status: "Se preparando para infiltração", nota: "Nada por aqui" },
+    { nome: "Alice", status: "Alice se prepara pra usar pela primeira vez as habilidades de bardo em uma missão", nota: "Nada por aqui."}
+];
+
+function carregarPersonagens() {
+    const lista = document.getElementById('personagens-lista');
+    if (!lista) return;
+    lista.innerHTML = personagensDados.map(p => `
+        <div class="card-personagem">
+            <h3>${p.nome}</h3>
+            <p><strong>Status:</strong> ${p.status}</p>
+            <p><strong>Nota:</strong> ${p.nota}</p>
+        </div>
+    `).join('');
+}
+
+// 4. DIÁRIO DE REGISTROS (Respeitando sua lista anterior)
 const registrosDados = [
     {
         nome: "Mestre",
         tipo: "Aviso",
         data: "06/01/2026",
         mensagem: "Sejam bem-vindos à Caverna! Usem o formulário abaixo para enviar seus relatos."
-    }, // <-- ESSA VÍRGULA ESTAVA FALTANDO E TRAVOU TUDO
+    },
     {
         nome: "Helena",
         tipo: "Resumo",
@@ -52,21 +62,19 @@ const registrosDados = [
     }
 ];
 
-function carregarPosts() {
+function carregarDiario() {
     const lista = document.getElementById('registros-lista');
     if (!lista) return;
-    lista.innerHTML = "";
-    registrosDados.slice().reverse().forEach(post => {
-        const item = document.createElement('article');
-        item.style.borderBottom = "1px solid #444";
-        item.style.padding = "15px 0";
-        item.innerHTML = `
-            <h3 style="color:#d4af37; margin:0;">${post.nome} <small style="color:#888; font-size:0.6em;">(${post.tipo})</small></h3>
-            <p style="font-size:0.8em; color:#aaa; margin:5px 0;">${post.data}</p>
-            <p style="margin:5px 0;">${post.mensagem}</p>
-        `;
-        lista.appendChild(item);
-    });
+    lista.innerHTML = registrosDados.slice().reverse().map(post => `
+        <article class="post">
+            <h3>${post.nome} <small>(${post.tipo})</small></h3>
+            <p style="font-size:0.8em; color:#666;">${post.data}</p>
+            <p>${post.mensagem}</p>
+        </article>
+    `).join('');
 }
 
-window.onload = carregarPosts;
+window.onload = function() {
+    carregarPersonagens();
+    carregarDiario();
+};

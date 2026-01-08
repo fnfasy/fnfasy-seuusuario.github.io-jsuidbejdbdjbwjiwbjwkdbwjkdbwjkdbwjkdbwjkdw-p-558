@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <meta name="robots" content="noindex, nofollow, noarchive">
-    
     <title>Caverna RPG | Home</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -16,7 +14,7 @@
         <nav>
             <a href="#avisos">Avisos</a>
             <a href="#mapa">Mapa</a>
-            <a href="#registros">Registros</a>
+            <a href="#personagens">Personagens</a> <a href="#registros">Registros</a>
             <a href="#feedback">Feedback</a>
             <button class="btn-nav" onclick="window.open('livro-regras.pdf')">📜 Livro de Regras</button>
             <button class="btn-nav" onclick="window.open('ficha-personagem.pdf')">👤 Fichas</button>
@@ -25,10 +23,16 @@
 
     <main>
         <section class="countdown-container">
-            <h2>PRÓXIMA SESSÃO EM:</h2>
+            <h2 id="status-sessao">PRÓXIMA SESSÃO EM:</h2>
             <div id="timer">
                 <span id="days">00</span>d <span id="hours">00</span>h <span id="minutes">00</span>m <span id="seconds">00</span>s
             </div>
+        </section>
+
+        <section id="personagens" class="card">
+            <h2>👤 ATUALIZAÇÕES DOS PERSONAGENS</h2>
+            <div id="personagens-lista" class="grid-personagens">
+                </div>
         </section>
 
         <section id="avisos" class="card">
@@ -49,21 +53,17 @@
 
         <section id="registros" class="card">
             <h2>📜 DIÁRIO DE AVENTURAS</h2>
-            <div id="registros-lista">
-                </div>
+            <div id="registros-lista"></div>
         </section>
 
         <section id="feedback" class="card">
             <h2>✍️ CRÔNICAS DOS JOGADORES</h2>
             <p>O que achou da última sessão? Deixe seu relato para o Mestre.</p>
-            
             <form action="https://formspree.io/f/mjgknvyl" method="POST">
                 <div class="input-group" style="margin-bottom: 15px;">
                     <label style="color: #d4af37; display: block; margin-bottom: 5px;">Seu Nome ou Personagem:</label>
-                    <input type="text" name="Nome" placeholder="Ex: Thorgar, o Anão" required 
-                    style="width: 100%; box-sizing: border-box;">
+                    <input type="text" name="Nome" placeholder="Ex: Thorgar, o Anão" required style="width: 100%; box-sizing: border-box;">
                 </div>
-                
                 <div class="input-group" style="margin-bottom: 15px;">
                     <label style="color: #d4af37; display: block; margin-bottom: 5px;">Tipo de Mensagem:</label>
                     <select name="Tipo" style="width: 100%; box-sizing: border-box;">
@@ -73,15 +73,11 @@
                         <option value="critica">🔥 Crítica</option>
                     </select>
                 </div>
-
                 <div class="input-group" style="margin-bottom: 15px;">
                     <label style="color: #d4af37; display: block; margin-bottom: 5px;">Sua Mensagem:</label>
-                    <textarea name="Mensagem" rows="5" placeholder="Escreva sua crônica..." required 
-                    style="width: 100%; box-sizing: border-box;"></textarea>
+                    <textarea name="Mensagem" rows="5" placeholder="Escreva sua crônica..." required style="width: 100%; box-sizing: border-box;"></textarea>
                 </div>
-
                 <input type="hidden" name="_subject" value="Nova Crônica da Caverna RPG!">
-
                 <button type="submit" class="btn-enviar" style="width: 100%;">ENVIAR PARA O MESTRE</button>
             </form>
         </section>

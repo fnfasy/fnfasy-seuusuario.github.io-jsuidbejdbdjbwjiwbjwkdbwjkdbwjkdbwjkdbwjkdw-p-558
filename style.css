@@ -91,6 +91,7 @@ nav a:hover, .btn-nav:hover {
     font-family: 'Cinzel', serif;
     color: var(--dourado);
     border-bottom: 1px solid var(--marrom-claro);
+    margin-bottom: 20px;
 }
 
 .mapa-img {
@@ -100,9 +101,39 @@ nav a:hover, .btn-nav:hover {
     transition: 0.5s;
 }
 
-.map-wrapper:hover .mapa-img { filter: none; transform: scale(1.01); }
+/* --- ESTILO DOS PERSONAGENS (RETÂNGULOS BRANCOS) --- */
+.grid-personagens {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
 
-/* Estilo Pergaminho para Registros */
+.card-personagem {
+    background: #ffffff; /* Retângulo branco pedido */
+    color: #1a1a1a;      /* Texto escuro para ler no branco */
+    padding: 15px;
+    width: 220px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    text-align: left;
+    border-left: 6px solid var(--dourado);
+}
+
+.card-personagem h3 {
+    margin: 0 0 10px 0;
+    color: var(--marrom-couro);
+    font-family: 'MedievalSharp', cursive;
+    border-bottom: 1px solid #ddd;
+}
+
+.card-personagem p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+    font-family: 'Spectral', serif;
+}
+
+/* --- RESTANTE DO CSS ORIGINAL --- */
 .post {
     background: var(--pergaminho);
     color: #2b1d12;
@@ -116,8 +147,6 @@ nav a:hover, .btn-nav:hover {
 
 .post h3 { font-family: 'MedievalSharp', cursive; margin-top: 0; }
 
-/* Form Estilo */
-#form-feedback { display: flex; flex-direction: column; gap: 10px; }
 input, select, textarea {
     background: #1a1a1a;
     border: 1px solid var(--marrom-claro);
@@ -135,7 +164,4 @@ input, select, textarea {
     cursor: pointer;
 }
 
-.btn-enviar:hover { background: var(--dourado); color: black; }
-
 footer { padding: 40px; text-align: center; opacity: 0.5; }
-#admin-login { background: none; border: none; color: gray; cursor: pointer; }
